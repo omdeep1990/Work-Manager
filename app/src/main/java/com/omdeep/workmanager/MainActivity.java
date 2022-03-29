@@ -32,12 +32,15 @@ Constraints constraints = new Constraints
                 .build();
 
         WorkManager.getInstance(this).enqueue(request);
-
-        WorkManager.getInstance(this).getWorkInfoByIdLiveData(request.getId()).observe(this, new Observer<WorkInfo>() {
-            @Override
-            public void onChanged(WorkInfo workInfo) {
-                binding.tvWorkStatus.setText(workInfo.getState().name());
-            }
-        });
+//TODO: Two methods to get instance of work manager
+        //TODO: 1.
+//        WorkManager.getInstance(this).getWorkInfoByIdLiveData(request.getId()).observe(this, new Observer<WorkInfo>() {
+//            @Override
+//            public void onChanged(WorkInfo workInfo) {
+//                binding.tvWorkStatus.setText(workInfo.getState().name());
+//            }
+//        });
+//Todo: 2.
+        WorkManager.getInstance(this).getWorkInfoByIdLiveData(request.getId()).observe(this, workInfo -> binding.tvWorkStatus.setText(workInfo.getState().name()));
     }
 }
